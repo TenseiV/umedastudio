@@ -1,0 +1,542 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Umeda Studio - Développement Web FullStack & Création Digitale">
+	<main>
+		<section class="hero">
+			<h1>Umeda Studio</h1>
+			<p class="tagline">Développeur Web FullStack PHP & Créateur d'Expériences Digitales Modernes.</p>
+			<!-- On pourra ajouter des boutons CTA ici plus tard -->
+		</section>
+
+    <section id="services" class="services-section">
+      <h2>Mes Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Développement Web FullStack PHP</h3>
+          <p>Applications web robustes et sur mesure avec Laravel ou Symfony. Expertise back-end et intégration complète.</p>
+        </div>
+        <div class="service-card">
+          <h3>Création Sites Vitrines & E-commerce</h3>
+          <p>Solutions clé en main avec WordPress : design personnalisé, fonctionnalités e-commerce (WooCommerce), optimisation SEO.</p>
+        </div>
+        <div class="service-card">
+          <h3>Design & Intégration Front-End</h3>
+          <p>Interfaces utilisateur modernes, intuitives et créatives. Maîtrise de Javascript et des dernières tendances du web design.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tarifs" class="pricing-section">
+      <h2>Des Tarifs Adaptés à Vos Besoins</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <p class="price">499€</p>
+          <ul>
+            <li>Site vitrine simple (jusqu'à 5 pages)</li>
+            <li>Design moderne et responsive</li>
+            <li>Formulaire de contact</li>
+            <li>Mise en ligne</li>
+          </ul>
+          <a href="#contact" class="cta-button">Choisir Basic</a>
+        </div>
+        <div class="pricing-card featured"> <!-- Carte mise en avant -->
+          <h3>Starter</h3>
+          <p class="price">999€</p>
+          <ul>
+            <li>Site vitrine/blog avancé</li>
+            <li>Design personnalisé & unique</li>
+            <li>Intégration CMS (WordPress)</li>
+            <li>Début fonctionnalités e-commerce</li>
+            <li>Optimisation SEO initiale</li>
+          </ul>
+          <a href="#contact" class="cta-button">Choisir Starter</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Pro</h3>
+          <p class="price">1799€</p>
+          <ul>
+            <li>Boutique en ligne complète</li>
+            <li>Catalogue produits illimité</li>
+            <li>Paiement sécurisé intégré</li>
+            <li>Fonctionnalités e-commerce avancées</li>
+            <li>Support & Maintenance (option)</li>
+          </ul>
+          <a href="#contact" class="cta-button">Choisir Pro</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="portfolio-section">
+      <h2>Mes Projets Récents</h2>
+      <div class="portfolio-grid">
+        <div class="project-card">
+          <div class="project-image-placeholder">Image Projet 1</div>
+          <h3>Nom du Projet 1</h3>
+          <p>Courte description du projet, technologies utilisées (ex: Laravel, Vue.js, API externe...).</p>
+          {/* <a href="#" class="project-link">Voir le projet</a> */}
+        </div>
+        <div class="project-card">
+          <div class="project-image-placeholder">Image Projet 2</div>
+          <h3>Nom du Projet 2</h3>
+          <p>Site e-commerce développé sous WordPress/WooCommerce avec design sur mesure.</p>
+          {/* <a href="#" class="project-link">Voir le projet</a> */}
+        </div>
+        <div class="project-card">
+          <div class="project-image-placeholder">Image Projet 3</div>
+          <h3>Nom du Projet 3</h3>
+          <p>Application spécifique ou landing page créative avec animations Javascript.</p>
+          {/* <a href="#" class="project-link">Voir le projet</a> */}
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-section">
+      <h2>Ce que disent nos clients</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="quote">"Grâce à Umeda Studio, notre application métier est devenue incroyablement performante. Un travail PHP impeccable !"</p>
+          <div class="author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <p class="name">Jean Dupont</p>
+              <p class="title">Directeur Technique, Société Alpha</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Le design du site vitrine est moderne et exactement ce que nous voulions. La partie e-commerce fonctionne parfaitement."</p>
+          <div class="author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <p class="name">Marie Dubois</p>
+              <p class="title">Gérante, Boutique Beta</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Réactif, créatif et très compétent techniquement. Umeda Studio a su comprendre et réaliser notre vision."</p>
+          <div class="author">
+            <div class="avatar-placeholder"></div>
+            <div>
+              <p class="name">Paul Martin</p>
+              <p class="title">CEO, Startup Gamma</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <h2>Contactez-moi</h2>
+      <p>Discutons de votre projet ! Remplissez le formulaire ci-dessous ou envoyez-moi un email directement à <a href="mailto:contact@umedastudio.com">contact@umedastudio.com</a>.</p>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="name">Nom :</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Sujet :</label>
+          <input type="text" id="subject" name="subject">
+        </div>
+        <div class="form-group">
+          <label for="message">Message :</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Envoyer le Message</button>
+      </form>
+    </section>
+
+	</main>
+</Layout>
+
+<style>
+	main {
+    /* Enlever la marge auto et le max-width pour que les sections prennent toute la largeur */
+		padding: 0; /* Le padding sera géré par section */
+	}
+
+  .hero {
+    min-height: 70vh; /* Prend une bonne partie de la hauteur de l'écran */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    /* Optionnel: Ajouter une image de fond ou un dégradé subtil plus tard */
+    /* background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('/path/to/background.jpg'); */
+    /* background-size: cover; */
+  }
+
+	h1 {
+    /* Ajustement de la taille pour le titre principal */
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1rem; /* Espacement sous le titre */
+    color: var(--sky-blue); /* Assurer que le H1 est bien bleu */
+	}
+
+	.tagline {
+    font-size: 1.5rem;
+    color: var(--off-white);
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+
+	/* Supprimer le style .text-gradient qui n'est plus utilisé */
+
+  /* Styles pour la section Services */
+  .services-section {
+    padding: 4rem 2rem;
+    background-color: var(--near-black); /* Garder le fond noir */
+    text-align: center;
+  }
+
+  .services-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--sky-blue);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille responsive */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrer la grille */
+  }
+
+  .service-card {
+    background-color: rgba(30, 30, 30, 0.7); /* Fond de carte légèrement distinct */
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(135, 206, 235, 0.1); /* Bordure subtile bleu ciel */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.1); /* Ombre bleu ciel au survol */
+  }
+
+  .service-card h3 {
+    color: var(--sky-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    color: var(--off-white);
+    line-height: 1.6;
+  }
+
+  /* Styles pour la section Tarifs */
+  .pricing-section {
+    padding: 4rem 2rem;
+    background-color: rgba(20, 20, 20, 0.5); /* Fond légèrement différent pour varier */
+    text-align: center;
+  }
+
+  .pricing-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--sky-blue);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch; /* Aligner les cartes sur la hauteur */
+  }
+
+  .pricing-card {
+    background-color: var(--near-black);
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(135, 206, 235, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--sky-blue); /* Bordure plus visible pour la carte 'featured' */
+    transform: scale(1.05); /* Légèrement plus grande */
+    box-shadow: 0 10px 30px rgba(135, 206, 235, 0.15);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.1);
+  }
+
+  .pricing-card.featured:hover {
+     transform: scale(1.05) translateY(-5px); /* Conserver l'effet scale au survol */
+     box-shadow: 0 15px 35px rgba(135, 206, 235, 0.2); /* Ombre plus prononcée */
+  }
+
+
+  .pricing-card h3 {
+    color: var(--sky-blue);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-card .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    text-align: left;
+    flex-grow: 1; /* Pour que la liste pousse le bouton vers le bas */
+  }
+
+  .pricing-card ul li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--off-white);
+  }
+
+  .pricing-card ul li::before {
+    content: '✓'; /* Icône check */
+    color: var(--sky-blue);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--sky-blue);
+    color: var(--near-black);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: auto; /* Aligner le bouton en bas */
+  }
+
+  .cta-button:hover {
+    background-color: #6fbedf; /* Bleu ciel légèrement plus foncé au survol */
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  /* Styles pour la section Projets */
+  .portfolio-section {
+    padding: 4rem 2rem;
+    background-color: var(--near-black); /* Retour au fond noir standard */
+    text-align: center;
+  }
+
+  .portfolio-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--sky-blue);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Légèrement plus large pour les images */
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .project-card {
+    background-color: rgba(30, 30, 30, 0.7);
+    border-radius: 8px;
+    overflow: hidden; /* Pour que le placeholder ne dépasse pas */
+    border: 1px solid rgba(135, 206, 235, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.1);
+  }
+
+  .project-image-placeholder {
+    height: 200px;
+    background-color: rgba(135, 206, 235, 0.1); /* Fond bleu ciel très transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--sky-blue);
+    font-style: italic;
+  }
+
+  .project-card h3 {
+    color: var(--sky-blue);
+    font-size: 1.4rem;
+    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+  }
+
+  .project-card p {
+    color: var(--off-white);
+    line-height: 1.6;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  /* Style optionnel pour un lien "Voir le projet" 
+  .project-link {
+    display: inline-block;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    color: var(--sky-blue);
+    text-decoration: underline;
+  }
+  */
+
+  /* Styles pour la section Contact */
+  .contact-section {
+    padding: 4rem 2rem;
+    background-color: rgba(20, 20, 20, 0.5); /* Même fond que Tarifs pour alterner */
+    text-align: center;
+  }
+
+  .contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--sky-blue);
+  }
+
+  .contact-section p {
+    color: var(--off-white);
+    max-width: 60ch;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--off-white);
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(135, 206, 235, 0.3);
+    background-color: rgba(30, 30, 30, 0.9);
+    color: var(--off-white);
+    font-family: inherit;
+    font-size: 1rem;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 5px rgba(135, 206, 235, 0.5);
+  }
+
+  .contact-section .cta-button {
+      display: block; /* Bouton pleine largeur dans le contexte du formulaire */
+      width: 100%;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+  }
+
+  /* Styles pour la section Témoignages */
+  .testimonials-section {
+    padding: 4rem 2rem;
+    background-color: var(--near-black);
+    text-align: center;
+  }
+
+  .testimonials-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--sky-blue);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background-color: rgba(30, 30, 30, 0.7);
+    padding: 2rem;
+    border-radius: 12px; /* Coins plus arrondis comme l'exemple */
+    border: 1px solid rgba(135, 206, 235, 0.1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pousse l'auteur en bas */
+  }
+
+  .testimonial-card .quote {
+    color: var(--off-white);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    flex-grow: 1;
+  }
+
+  .testimonial-card .author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto; /* Assure que l'auteur est en bas */
+  }
+
+  .testimonial-card .avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(135, 206, 235, 0.2);
+    border-radius: 50%; /* Rond */
+    flex-shrink: 0;
+  }
+
+  .testimonial-card .name {
+    color: var(--sky-blue);
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .testimonial-card .title {
+    color: var(--off-white);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+</style>

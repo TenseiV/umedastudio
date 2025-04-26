@@ -1,0 +1,58 @@
+---
+// src/components/Header.astro
+---
+<header>
+  <div class="logo">
+    <a href="/">Umeda Studio</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(18, 18, 18, 0.8); /* Fond légèrement transparent */
+    backdrop-filter: blur(10px); /* Effet de flou pour le style moderne */
+    border-bottom: 1px solid rgba(135, 206, 235, 0.2); /* Bordure subtile bleu ciel */
+    position: sticky; /* Pour que le header reste en haut */
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+
+  .logo a {
+    color: var(--sky-blue);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    color: var(--off-white);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  nav a:hover {
+    color: var(--sky-blue);
+    text-decoration: none;
+  }
+</style> 

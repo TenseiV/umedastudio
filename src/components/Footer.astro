@@ -1,0 +1,50 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <p>&copy; {currentYear} Umeda Studio. Tous droits réservés.</p>
+  <!-- Ajouter ici des liens vers les réseaux sociaux si nécessaire -->
+  <!-- 
+  <div class="social-links">
+    <a href="#" aria-label="LinkedIn">LI</a>
+    <a href="#" aria-label="GitHub">GH</a>
+  </div>
+  -->
+</footer>
+
+<style>
+  footer {
+    padding: 2rem;
+    margin-top: 4rem; /* Espace au-dessus du footer */
+    text-align: center;
+    border-top: 1px solid rgba(135, 206, 235, 0.2); /* Ligne de séparation */
+    background-color: var(--near-black);
+  }
+
+  footer p {
+    color: var(--off-white);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* Styles optionnels pour les liens sociaux */
+  /*
+  .social-links {
+    margin-top: 1rem;
+  }
+
+  .social-links a {
+    color: var(--off-white);
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social-links a:hover {
+    color: var(--sky-blue);
+  }
+  */
+</style> 

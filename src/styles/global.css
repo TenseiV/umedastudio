@@ -1,0 +1,44 @@
+:root {
+  --sky-blue: #87CEEB; /* Bleu ciel */
+  --off-white: #f0f0f0; /* Blanc cassé pour le texte */
+  --near-black: #121212; /* Noir légèrement désaturé */
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+html {
+  min-height: 100%; /* Assurer que html prend toute la hauteur */
+}
+
+body {
+  /* background-color: var(--near-black); */ /* Remplacé par le dégradé */
+  background: linear-gradient(to bottom, var(--near-black) 0%, #0d1a26 100%); /* Dégradé de noir vers bleu très sombre */
+  background-attachment: fixed; /* Fixer le dégradé pour qu'il ne scrolle pas avec le contenu */
+  min-height: 100vh; /* Assurer que le body prend au moins toute la hauteur de la vue */
+  color: var(--off-white);
+  /* font-family: 'Inter', sans-serif; */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400; /* Poids Regular pour le corps */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--sky-blue); /* Titres en bleu ciel */
+  font-weight: 700; /* Poids Bold pour les titres */
+}
+
+a {
+  color: var(--sky-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+} 
