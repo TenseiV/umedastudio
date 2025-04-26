@@ -6,20 +6,22 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap'); */
+/* Les polices sont maintenant chargées via <link> dans Layout.astro */
 
 html {
   min-height: 100%; /* Assurer que html prend toute la hauteur */
+  /* scroll-behavior: smooth; */ /* Supprimer cette ligne */
 }
 
 body {
   /* background-color: var(--near-black); */ /* Remplacé par le dégradé */
   background: linear-gradient(to bottom, var(--near-black) 0%, #0d1a26 100%); /* Dégradé de noir vers bleu très sombre */
-  background-attachment: fixed; /* Fixer le dégradé pour qu'il ne scrolle pas avec le contenu */
   min-height: 100vh; /* Assurer que le body prend au moins toute la hauteur de la vue */
   color: var(--off-white);
   /* font-family: 'Inter', sans-serif; */
-  font-family: 'Outfit', sans-serif;
-  font-weight: 400; /* Poids Regular pour le corps */
+  font-family: 'Cal Sans', sans-serif; /* Utiliser Cal Sans */
+  font-weight: 400; /* Garder normal pour le corps */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -31,7 +33,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--sky-blue); /* Titres en bleu ciel */
-  font-weight: 700; /* Poids Bold pour les titres */
+  font-weight: 700; /* Garder Bold pour les titres */
+  /* Note: Cal Sans a une graisse limitée, 700 pourrait ne pas avoir d'effet différent de 400 */
 }
 
 a {

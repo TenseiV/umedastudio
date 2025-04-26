@@ -16,6 +16,12 @@ const { title } = Astro.props;
 		<meta name="description" content="Umeda Studio - Développement Web Sur Mesure" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* --- Google Fonts --- */} 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
@@ -23,5 +29,36 @@ const { title } = Astro.props;
 		<Header />
 		<slot />
 		<Footer />
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Sélectionner les liens de navigation pointant vers une ancre
+        const navLinks = document.querySelectorAll('.site-header nav a[href^="#"]');
+
+        if (navLinks.length > 0) {
+          navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault(); // Empêcher le saut par défaut
+
+              const targetId = this.getAttribute('href');
+              const targetElement = document.querySelector(targetId);
+
+              if (targetElement) {
+                // Calculer la position de la cible en tenant compte du header sticky
+                const headerOffset = document.querySelector('.site-header')?.offsetHeight || 0;
+                // On peut ajouter un petit offset supplémentaire si besoin
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; // 20px de marge
+
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            });
+          });
+        }
+      });
+    </script>
 	</body>
 </html> 

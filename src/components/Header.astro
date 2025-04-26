@@ -1,33 +1,46 @@
 ---
 // src/components/Header.astro
 ---
-<header>
-  <div class="logo">
-    <a href="/">Umeda Studio</a>
+<header class="site-header">
+  <div class="header-content-wrapper">
+    <div class="logo">
+      <a href="/">Umeda Studio</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#testimonials">Témoignages</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+       <a href="#contact" class="cta-button-header">Contactez-moi</a>
+    </div>
   </div>
-  <nav>
-    <ul>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#tarifs">Tarifs</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 </header>
 
 <style>
-  header {
+  .site-header {
+    position: sticky;
+    top: 1rem;
+    z-index: 10;
+    width: 100%;
+  }
+
+  .header-content-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(18, 18, 18, 0.8); /* Fond légèrement transparent */
-    backdrop-filter: blur(10px); /* Effet de flou pour le style moderne */
-    border-bottom: 1px solid rgba(135, 206, 235, 0.2); /* Bordure subtile bleu ciel */
-    position: sticky; /* Pour que le header reste en haut */
-    top: 0;
-    z-index: 1000;
-    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--sky-blue);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(135, 206, 235, 0.1);
+    position: relative;
   }
 
   .logo a {
@@ -40,7 +53,7 @@
   nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     margin: 0;
     padding: 0;
   }
@@ -49,10 +62,30 @@
     color: var(--off-white);
     text-decoration: none;
     font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
   }
 
   nav a:hover {
     color: var(--sky-blue);
+    text-decoration: none;
+  }
+
+  .cta-button-header {
+    display: inline-block;
+    background-color: var(--sky-blue);
+    color: var(--near-black);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .cta-button-header:hover {
+    background-color: #6fbedf;
+    transform: scale(1.05);
     text-decoration: none;
   }
 </style> 
