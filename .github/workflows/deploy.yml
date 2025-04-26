@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Déclenche l'action à chaque push sur la branche main
+  push:
+    branches:
+      - main # Ou le nom de ta branche principale
+  # Permet de lancer l'action manuellement depuis l'onglet Actions de GitHub
+  workflow_dispatch:
+
+# Autorisations nécessaires pour le déploiement sur gh-pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4 # Utilise la dernière version de checkout
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Utilise la dernière version de setup-node
+        with:
+          node-version: '20' # Ou la version de Node que tu utilises (vérifie ton package.json)
+          cache: 'npm' # Active le cache pour accélérer les builds futurs
+      - name: Install dependencies
+        run: npm ci # Utilise 'ci' pour une installation propre basée sur package-lock.json
+      - name: Build Astro site
+        run: npm run build # Assure-toi que ce script existe dans ton package.json
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # Utilise la dernière version
+        with:
+          # Télécharge le contenu du dossier de build (défini dans astro.config.mjs)
+          path: ./dist # Assure-toi que ça correspond à ton 'outDir'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Utilise la dernière version
