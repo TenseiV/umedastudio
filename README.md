@@ -1,47 +1,83 @@
-# Astro Starter Kit: Minimal
+# Umeda Studio Portfolio Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This repository contains the source code for the Umeda Studio portfolio website, built with [Astro](https://astro.build/).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## ✨ Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Minimalist design focused on showcasing work.
+- Built with Astro for optimal performance.
+- Deployed via GitHub Pages.
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
+│   └── .nojekyll         # Ensures GitHub Pages serves files starting with _
+├── dist/                 # Build output directory (generated)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/       # Reusable UI components
+│   ├── layouts/          # Page layouts
+│   └── pages/            # Site pages (routes)
+├── astro.config.mjs      # Astro configuration file
+├── package.json          # Project dependencies and scripts
+└── README.md             # This file
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **`public/`**: Static assets. The crucial `.nojekyll` file resides here.
+- **`src/`**: Main application code (pages, components, layouts).
+- **`dist/`**: Production build output. This directory is pushed to the `gh-pages` branch during deployment.
+- **`astro.config.mjs`**: Contains Astro configuration, including `site` and `base` options necessary for GitHub Pages deployment.
+- **`package.json`**: Lists dependencies and defines NPM scripts, including `dev`, `build`, and `deploy`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🛠️ Setup and Development
 
-Any static assets, like images, can be placed in the `public/` directory.
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd umedastudio
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+    The site will be available at `http://localhost:4321`.
 
-## 🧞 Commands
+## 🏗️ Building for Production
 
-All commands are run from the root of the project, from a terminal:
+To create a production-ready build:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+npm run build
+```
 
-## 👀 Want to learn more?
+This command generates the static site files in the `dist/` directory.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🚀 Deployment to GitHub Pages
+
+This project uses the `gh-pages` package to deploy the built site (`dist/` directory) to the `gh-pages` branch of this repository.
+
+**Prerequisites:**
+
+1.  **`gh-pages` dependency:** Ensure `gh-pages` is listed in `devDependencies` in `package.json`.
+2.  **`.nojekyll` file:** A `.nojekyll` file must exist in the `public/` directory. This prevents GitHub Pages from ignoring directories starting with underscores (like `_astro`), which is essential for the site to function correctly.
+3.  **`astro.config.mjs`:** The `site` and `base` options must be correctly configured for your GitHub Pages URL.
+4.  **GitHub Pages Settings:** Configure your repository's GitHub Pages settings to deploy from the `gh-pages` branch.
+
+**Deployment Command:**
+
+```bash
+npm run deploy
+```
+
+**What this command does:**
+
+1.  Runs `npm run build` to generate the production site in `dist/`.
+2.  Uses `gh-pages` to push the *entire* contents of the `dist/` directory to the `gh-pages` branch.
+3.  The `--dotfiles` flag is included in the `deploy` script in `package.json` to ensure hidden files like `.nojekyll` are copied during deployment.
+
+After running `npm run deploy`, GitHub Pages will automatically serve the updated site from the `gh-pages` branch.

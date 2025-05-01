@@ -13,18 +13,65 @@ import symfonyLogo from '../assets/img/symfony.svg';
 import jsLogo from '../assets/img/js.svg';
 import wordpressLogo from '../assets/img/wordpress.svg';
 // import astroLogo from '../assets/img/astro.svg'; // Commenté car fichier manquant
+
+// --- Importer l'image du projet StopTCA --- 
+import stoptcaImage1 from '../assets/img/stoptca.webp';
+import stoptcaImage2 from '../assets/img/stoptca2.webp';
+import evenparcImage1 from '../assets/img/evenparc.webp';
+import evenparcImage2 from '../assets/img/evenparc2.webp';
+import maisonicImage1 from '../assets/img/maisonic.webp';
+import maisonicImage2 from '../assets/img/maisonic2.webp';
+
+// Project Data (Remove typing)
+const projects = [
+  {
+    id: 'stoptca',
+    title: 'StopTCA.fr - Refonte Paiement PHP',
+    description: 'Refonte complète du système de paiement pour une plateforme médicale...',
+    detailedDescription: 'Migration de l\'ancien système de paiement vers une solution moderne utilisant Stripe via MangoPay. Développement d\'une API sécurisée en Laravel pour gérer les transactions, les abonnements et les remboursements. Création d\'un dashboard administrateur pour le suivi financier. Améliorations de l\'UX/UI du tunnel de paiement en Javascript et CSS.',
+    images: [stoptcaImage1, stoptcaImage2], 
+    tags: ['PHP', 'Laravel', 'MangoPay', 'JavaScript', 'CSS', 'HTML'],
+    details: 'Secteur Médical | Juin 2022 - Mai 2023',
+    link: null 
+  },
+  {
+    id: 'evenparc',
+    title: 'EvenParc - Application Billetterie Symfony',
+    description: 'Développement d\'une application web de gestion et vente de billets...',
+    detailedDescription: 'Conception et développement d\'une plateforme complète en Symfony pour la gestion d\'événements et la vente de billets en ligne. Intégration d\'une API de paiement externe, gestion des places numérotées, système de codes promotionnels et interface d\'administration avancée pour les organisateurs. Optimisation des performances pour les pics de charge.',
+    images: [evenparcImage1, evenparcImage2],
+    tags: ['PHP', 'Symfony', 'API Rest', 'JavaScript', 'Bootstrap'],
+    details: 'Secteur Événementiel | 2023',
+    link: null 
+  },
+  {
+    id: 'maisonic',
+    title: 'Maisonic - Site E-commerce WordPress',
+    description: 'Création d\'un site e-commerce sur mesure avec WordPress et WooCommerce...',
+    detailedDescription: 'Refonte graphique et technique d\'un site WooCommerce existant. Développement d\'un thème WordPress personnalisé basé sur les maquettes fournies. Intégration de fonctionnalités spécifiques via des plugins sur mesure (configurateur de produit, etc.). Optimisation SEO technique et de contenu pour améliorer le classement et les ventes.',
+    images: [maisonicImage1, maisonicImage2],
+    tags: ['WordPress', 'WooCommerce', 'PHP', 'CSS', 'SEO'],
+    details: 'Secteur Domotique | 2024',
+    link: null 
+  },
+  // Add more projects here...
+];
+
+// Remove type annotation
+const imageWidths = [400, 800];
+
 ---
 
-<Layout title="Umeda Studio - Développement Web FullStack & Création Digitale">
-	<main>
+<Layout title="Umeda Studio - Développement Web sur mesure">
+	<main data-projects={JSON.stringify(projects)}>
 		<section class="hero">
       <div id="particles-js"></div>
 			<div class="hero-content">
         <h1>Umeda Studio</h1>
-        <p class="tagline">Développement Web FullStack & Création Digitale</p>
+        <p class="tagline">Développements Web sur mesure.</p>
         <div class="hero-cta">
-          <a href="#services" class="cta-button">Mes Services</a>
-          <a href="#tarifs" class="cta-button secondary">Voir les Tarifs</a>
+          <a href="#services" class="cta-button">Services</a>
+          <a href="#tarifs" class="cta-button secondary">Tarifs</a>
         </div>
 
         {/* --- Section Logos Technologies --- */} 
@@ -54,7 +101,7 @@ import wordpressLogo from '../assets/img/wordpress.svg';
 		</section>
 
     <section id="services" class="services-section">
-      <h2>Mes Services</h2>
+      <h2>Services</h2>
       <div class="services-grid">
         <div class="service-card">
           <h3>Développement Web FullStack PHP</h3>
@@ -72,31 +119,53 @@ import wordpressLogo from '../assets/img/wordpress.svg';
     </section>
 
     <section id="projets" class="portfolio-section">
-      <h2>Mes Projets Récents</h2>
+      <h2>Projets</h2>
       <div class="portfolio-grid">
-        <div class="project-card">
-          <div class="project-image-placeholder">Image Projet 1</div>
-          <h3>Nom du Projet 1</h3>
-          <p>Courte description du projet, technologies utilisées (ex: Laravel, Vue.js, API externe...).</p>
-          {/* <a href="#" class="project-link">Voir le projet</a> */}
-        </div>
-        <div class="project-card">
-          <div class="project-image-placeholder">Image Projet 2</div>
-          <h3>Nom du Projet 2</h3>
-          <p>Site e-commerce développé sous WordPress/WooCommerce avec design sur mesure.</p>
-          {/* <a href="#" class="project-link">Voir le projet</a> */}
-        </div>
-        <div class="project-card">
-          <div class="project-image-placeholder">Image Projet 3</div>
-          <h3>Nom du Projet 3</h3>
-          <p>Application spécifique ou landing page créative avec animations Javascript.</p>
-          {/* <a href="#" class="project-link">Voir le projet</a> */}
-        </div>
+        {projects.map((project, index) => (
+          <div class="project-card" data-index={index} onclick={`openProjectModal('${project.id}')`}>
+            {/* --- Swiper Carousel --- */} 
+            <div class={`swiper project-swiper-${project.id}`}>
+              <div class="swiper-wrapper">
+                {project.images.map((img, imgIndex) => (
+                  <div class="swiper-slide">
+                    <Image 
+                      src={img}
+                      alt={`${project.title} - Screenshot ${imgIndex + 1}`}
+                      class="project-image"
+                      widths={imageWidths}
+                      sizes="(max-width: 600px) 400px, 800px"
+                      format="webp"
+                      quality={80}
+                    />
+                  </div>
+                ))}
+              </div>
+              {/* Add Pagination */} 
+              <div class="swiper-pagination"></div>
+              {/* Add Navigation */} 
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+
+            {/* --- Project Content --- */} 
+            <div class="project-content">
+              <h3>{project.title}</h3>
+              <p class="project-description">{project.description}</p>
+              <div class="project-tags">
+                {project.tags.map(tag => (
+                  <span class={`tag ${tag.toLowerCase().replace(/[^a-z0-9]/g, '')}`}>{tag}</span>
+                ))}
+              </div>
+              {project.details && <p class="project-details">{project.details}</p>}
+              {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link cta-button secondary">Voir le projet</a>}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
     <section id="testimonials" class="testimonials-section">
-      <h2>Ce que disent nos clients</h2>
+      <h2>Avis clients</h2>
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <p class="quote">"Grâce à Umeda Studio, notre application métier est devenue incroyablement performante. Un travail PHP impeccable !"</p>
@@ -206,18 +275,18 @@ import wordpressLogo from '../assets/img/wordpress.svg';
       <div class="pricing-grid">
         <div class="pricing-card">
           <h3>Basic</h3>
-          <p class="price">499€</p>
+          <p class="price"><span class="price-prefix">à partir de</span> 499€</p>
           <ul>
             <li>Site vitrine simple (jusqu'à 5 pages)</li>
             <li>Design moderne et responsive</li>
             <li>Formulaire de contact</li>
             <li>Mise en ligne</li>
           </ul>
-          <a href="#contact" class="cta-button">Choisir Basic</a>
+          <button type="button" class="cta-button" onclick="selectPlan('Basic')">Choisir Basic</button>
         </div>
         <div class="pricing-card featured">
           <h3>Starter</h3>
-          <p class="price">999€</p>
+          <p class="price"><span class="price-prefix">à partir de</span> 999€</p>
           <ul>
             <li>Site vitrine/blog avancé</li>
             <li>Design personnalisé & unique</li>
@@ -225,11 +294,11 @@ import wordpressLogo from '../assets/img/wordpress.svg';
             <li>Début fonctionnalités e-commerce</li>
             <li>Optimisation SEO initiale</li>
           </ul>
-          <a href="#contact" class="cta-button">Choisir Starter</a>
+          <button type="button" class="cta-button" onclick="selectPlan('Starter')">Choisir Starter</button>
         </div>
         <div class="pricing-card">
           <h3>Pro</h3>
-          <p class="price">1799€</p>
+          <p class="price"><span class="price-prefix">à partir de</span> 1799€</p>
           <ul>
             <li>Boutique en ligne complète</li>
             <li>Catalogue produits illimité</li>
@@ -237,15 +306,23 @@ import wordpressLogo from '../assets/img/wordpress.svg';
             <li>Fonctionnalités e-commerce avancées</li>
             <li>Support & Maintenance (option)</li>
           </ul>
-          <a href="#contact" class="cta-button">Choisir Pro</a>
+          <button type="button" class="cta-button" onclick="selectPlan('Pro')">Choisir Pro</button>
         </div>
       </div>
     </section>
 
     <section id="contact" class="contact-section">
       <h2>Contactez-moi</h2>
-      <p>Discutons de votre projet ! Remplissez le formulaire ci-dessous ou envoyez-moi un email directement à <a href="mailto:contact@umedastudio.com">contact@umedastudio.com</a>.</p>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+      <p>Discutons de votre projet ! Sélectionnez une offre ci-dessus ou remplissez le formulaire pour une demande personnalisée.</p>
+      <form action="https://formspree.io/f/mkgropyl" method="POST" class="contact-form">
+        <input type="hidden" id="selected-plan" name="selected_plan" value="Aucun">
+        <div id="plan-options" class="plan-options-section" style="display: none;">
+          <h4>Votre sélection : <span id="selected-plan-display"></span></h4>
+          <p>Options supplémentaires (optionnel) :</p>
+          <div id="options-checkboxes" class="options-checkboxes">
+          </div>
+          <hr class="options-divider">
+        </div>
         <div class="form-group">
           <label for="name">Nom :</label>
           <input type="text" id="name" name="name" required>
@@ -256,117 +333,116 @@ import wordpressLogo from '../assets/img/wordpress.svg';
         </div>
         <div class="form-group">
           <label for="subject">Sujet :</label>
-          <input type="text" id="subject" name="subject">
+          <input type="text" id="subject" name="subject" value="Demande de renseignements">
         </div>
         <div class="form-group">
           <label for="message">Message :</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre projet ou posez vos questions ici..."></textarea>
         </div>
-        <button type="submit" class="cta-button">Envoyer le Message</button>
+        <button type="submit" class="cta-button">Envoyer la Demande</button>
       </form>
     </section>
+
+    {/* === Project Modal Structure (Initially Hidden) === */} 
+    <div id="project-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="modal-close-button">×</button>
+        <h3 id="modal-project-title"></h3>
+        
+        {/* Modal Swiper for larger images */} 
+        <div id="modal-swiper-container" class="swiper modal-swiper">
+          <div class="swiper-wrapper" id="modal-swiper-wrapper">
+            {/* Slides will be populated by JS */} 
+          </div>
+          <div class="swiper-pagination modal-swiper-pagination"></div>
+          <div class="swiper-button-prev modal-swiper-button-prev"></div>
+          <div class="swiper-button-next modal-swiper-button-next"></div>
+        </div>
+
+        <p id="modal-project-description"></p>
+      </div>
+    </div>
+    {/* === End Project Modal Structure === */} 
 
 	</main>
 </Layout>
 
 <script>
-  // Importer directement dans le script navigateur
-  import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles-engine/+esm";
-  import { loadSlim } from "https://cdn.jsdelivr.net/npm/tsparticles-slim/+esm";
-
-  // Initialisation de tsParticles
-  async function loadParticles(options) {
-    // Plus besoin d'attendre loadSlim ici si on l'importe directement
-    await loadSlim(tsParticles);
-    await tsParticles.load({ id: "particles-js", options});
+  // Select Plan function 
+  function selectPlan(planName: string) {
+    const hiddenPlanInput = document.getElementById('selected-plan') as HTMLInputElement | null;
+    if (hiddenPlanInput) hiddenPlanInput.value = planName;
+    const subjectInput = document.getElementById('subject') as HTMLInputElement | null;
+    if (subjectInput) subjectInput.value = `Demande de devis - Plan ${planName}`;
+    const planDisplay = document.getElementById('selected-plan-display') as HTMLElement | null;
+    if (planDisplay) planDisplay.textContent = planName;
+    const optionsContainer = document.getElementById('options-checkboxes');
+    if (optionsContainer) {
+      optionsContainer.innerHTML = ''; 
+      let options: { [key: string]: string } = {};
+      switch (planName) { /* ... cases ... */ }
+      for (const [key, label] of Object.entries(options)) {
+         const checkboxDiv = document.createElement('div');
+         checkboxDiv.classList.add('checkbox-option');
+         const checkbox = document.createElement('input');
+         checkbox.type = 'checkbox';
+         checkbox.id = `option-${key}`;
+         checkbox.name = `option_${key}`;
+         checkbox.value = 'true';
+         const labelEl = document.createElement('label');
+         labelEl.htmlFor = `option-${key}`;
+         labelEl.textContent = label;
+         checkboxDiv.appendChild(checkbox);
+         checkboxDiv.appendChild(labelEl);
+         optionsContainer.appendChild(checkboxDiv);
+      }
+    }
+    const planOptionsSection = document.getElementById('plan-options') as HTMLElement | null;
+    if (planOptionsSection) planOptionsSection.style.display = 'block';
+    const contactSection = document.getElementById('contact');
+    if (contactSection) { 
+        const header = document.querySelector('.site-header') as HTMLElement | null;
+        const headerOffset = header ? header.offsetHeight : 0;
+        const elementPosition = contactSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; 
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+     }
+    (document.getElementById('name') as HTMLInputElement | null)?.focus();
   }
+  (window as any).selectPlan = selectPlan;
 
-  // Configuration des particules (inchangée)
-  const particlesOptions = {
-    particles: {
-      number: {
-        value: 80, // Nombre de particules
-        density: {
-          enable: true,
-          value_area: 800
-        }
-      },
-      color: {
-        value: "#ffffff" // Couleur blanche
-      },
-      shape: {
-        type: "circle" // Forme
-      },
-      opacity: {
-        value: 0.5, // Opacité
-        random: true
-      },
-      size: {
-        value: 2, // Taille
-        random: true
-      },
-      move: {
-        enable: true,
-        speed: 1.5, /* Vitesse augmentée */
-        direction: "none",
-        random: true,
-        straight: false,
-        out_mode: "out",
-        bounce: false
-      }
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: {
-          enable: false // Pas d'interaction au survol
-        },
-        onclick: {
-          enable: false // Pas d'interaction au clic
-        },
-        resize: true
-      }
-    },
-    detectRetina: true
-  };
-
-  // Charger les particules ET initialiser l'observer quand le DOM est prêt
+  // DOMContentLoaded Listener (Only for Intersection Observer)
   document.addEventListener('DOMContentLoaded', async () => {
-    loadParticles(particlesOptions);
-
-    // --- Intersection Observer pour animations --- 
-    const sections = document.querySelectorAll(
+    const sections = document.querySelectorAll<HTMLElement>(
       '.services-section, .portfolio-section, .testimonials-section, .pricing-section, .contact-section'
     );
-
-    if (sections.length === 0) return; // Si pas de sections, on arrête
-
-    const observerOptions = {
-      root: null, // par rapport au viewport
-      rootMargin: '0px',
-      threshold: 0.1 // Déclencher quand 10% de la section est visible
-    };
-
-    const observerCallback = (entries, observer) => {
-      entries.forEach(entry => {
-        // Si l'élément est visible
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          // Optionnel: arrêter d'observer une fois l'animation faite
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-    // --- Fin Intersection Observer ---
-
+    if (sections.length > 0) {
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            if (entry.target.id === 'projets') { 
+              const projectCards = entry.target.querySelectorAll<HTMLElement>('.project-card');
+              projectCards.forEach((card: HTMLElement, index: number) => {
+                card.style.transitionDelay = `${index * 0.1}s`; 
+              });
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+      sections.forEach(section => observer.observe(section));
+    }
   });
 </script>
+
+{/* Load external modules */}
+<script type="module" src="/src/scripts/particles.js" defer></script>
+<script type="module" src="/src/scripts/card-swipers.js" defer></script>
+<script type="module" src="/src/scripts/logo-scroller.js" defer></script>
+<script type="module" src="/src/scripts/project-modal.js" defer></script>
 
 <style>
 	main {
@@ -575,6 +651,17 @@ import wordpressLogo from '../assets/img/wordpress.svg';
     margin-bottom: 1.5rem;
   }
 
+  .pricing-card .price-prefix {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--off-white);
+    opacity: 0.8;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
   .pricing-card ul {
     list-style: none;
     padding: 0;
@@ -623,131 +710,157 @@ import wordpressLogo from '../assets/img/wordpress.svg';
 
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   .project-card {
     opacity: 0;
-    transform: scale(0.9);
+    transform: translateY(50px) scale(0.95);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    background: linear-gradient(135deg, #1a3a4a 0%, var(--near-black) 100%);
-    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(135, 206, 235, 0.1);
-    text-align: left;
-    position: relative;
-    z-index: 1;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.1);
-  }
-
-  .project-image-placeholder {
-    height: 200px;
-    background-color: rgba(135, 206, 235, 0.1);
+    border: 1px solid rgba(135, 206, 235, 0.2);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--sky-blue);
-    font-style: italic;
-  }
-
-  .project-card h3 {
-    color: var(--sky-blue);
-    font-size: 1.4rem;
-    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
-  }
-
-  .project-card p {
-    color: var(--off-white);
-    line-height: 1.6;
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    flex-direction: column;
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 
   .portfolio-section.is-visible .project-card {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 
-  .portfolio-section.is-visible .project-card:nth-child(1) { transition-delay: 0.1s; }
-  .portfolio-section.is-visible .project-card:nth-child(2) { transition-delay: 0.2s; }
-  .portfolio-section.is-visible .project-card:nth-child(3) { transition-delay: 0.3s; }
-
-  .contact-section {
-    padding: 4rem 2rem;
-    background: linear-gradient(to bottom, #1a2a38 0%, var(--near-black) 70%);
-    text-align: center;
-    position: relative;
-    z-index: 1;
+  .project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(135, 206, 235, 0.15);
+    border-color: rgba(135, 206, 235, 0.3);
   }
 
-  .contact-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--sky-blue);
-  }
-
-  .contact-section p {
-    color: var(--off-white);
-    max-width: 60ch;
-    margin: 0 auto 3rem auto;
-    line-height: 1.6;
-  }
-
-  .contact-form {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out 0.2s;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--off-white);
-    font-weight: bold;
-  }
-
-  .form-group input,
-  .form-group textarea {
+  .swiper {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: 5px;
-    border: 1px solid rgba(135, 206, 235, 0.3);
-    background-color: rgba(30, 30, 30, 0.9);
-    color: var(--off-white);
-    font-family: inherit;
-    font-size: 1rem;
+    height: 220px;
+    border-radius: 12px 12px 0 0;
   }
 
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--sky-blue);
-    box-shadow: 0 0 5px rgba(135, 206, 235, 0.5);
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .contact-section .cta-button {
-      display: block;
-      width: 100%;
-      font-size: 1.1rem;
-      margin-top: 1rem;
+  .project-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .contact-section.is-visible .contact-form {
+  .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--sky-blue);
+  }
+
+  .swiper-button-next, 
+  .swiper-button-prev {
+    color: var(--sky-blue);
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  .swiper-button-next:hover, 
+  .swiper-button-prev:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .swiper-button-next::after, 
+  .swiper-button-prev::after {
+      font-size: 16px;
+      font-weight: bold;
+  }
+
+  .project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .project-content h3 {
+    color: var(--sky-blue);
+    font-size: 1.6rem;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .project-description {
+    color: var(--off-white);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+
+  .project-tags {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: var(--tag-default-bg);
+    color: var(--tag-default-text);
+    white-space: nowrap;
+  }
+
+  .tag.php { background-color: var(--tag-php); }
+  .tag.laravel { background-color: var(--tag-laravel); }
+  .tag.symfony { background-color: var(--tag-symfony); color: var(--tag-symfony-text); }
+  .tag.mangopay { background-color: var(--tag-mangopay); }
+  .tag.javascript { background-color: var(--tag-javascript); color: var(--tag-javascript-text); }
+  .tag.css { background-color: var(--tag-css); }
+  .tag.html { background-color: var(--tag-html); }
+  .tag.wordpress { background-color: var(--tag-wordpress); }
+  .tag.woocommerce { background-color: var(--tag-woocommerce); }
+  .tag.seo { background-color: var(--tag-seo); }
+  .tag.apirest { background-color: var(--tag-apirest); }
+  .tag.bootstrap { background-color: var(--tag-bootstrap); }
+  
+  .project-details {
+    font-size: 0.85rem;
+    color: var(--off-white);
+    opacity: 0.7;
+    margin-top: auto;
+    margin-bottom: 1rem;
+  }
+
+  .project-link {
+      margin-top: auto;
+      align-self: flex-start;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
   }
 
   .testimonials-section {
@@ -766,50 +879,12 @@ import wordpressLogo from '../assets/img/wordpress.svg';
     padding: 0 2rem;
   }
 
-  /* Styles pour la section Témoignages */
-  .testimonials-section {
-    padding: 4rem 0;
-    background-color: var(--near-black);
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    overflow: hidden; /* Important pour masquer le contenu qui défile */
-  }
-
-  .testimonials-section h2 { /* ... */ }
-
-  /* Keyframes pour l'animation de défilement */
-  @keyframes scrollHorizontal {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      /* Déplacer de la largeur des 5 cartes originales */
-      /* (5 cartes * (largeur + gap)) */ 
-      /* On approxime avec -50% car on a dupliqué le contenu */
-      transform: translateX(-50%); 
-    }
-  }
-
   .testimonials-grid {
     display: flex;
-    /* overflow-x: auto; */ /* Supprimer */
     gap: 2rem;
-    /* max-width: 100%; */ /* Supprimer */
-    width: fit-content; /* Adapter la largeur au contenu (10 cartes) */
-    padding: 1rem 0 2rem 2rem; /* Ajuster padding left */
-
-    /* Scroll Snap - Supprimer */
-    /* scroll-snap-type: x mandatory; */
-    /* -webkit-overflow-scrolling: touch; */
-
-    /* Cacher la scrollbar - Supprimer */
-    /* scrollbar-width: none; */
-    /* -ms-overflow-style: none;  */
-    /* &::-webkit-scrollbar { display: none; } */
-
-    /* Appliquer l'animation */
-    animation: scrollHorizontal 20s linear infinite; /* Ajuster la durée (20s) pour la vitesse */
+    width: fit-content;
+    padding: 1rem 0 2rem 2rem;
+    animation: scrollHorizontal 30s linear infinite;
   }
 
   .testimonial-card {
@@ -870,13 +945,25 @@ import wordpressLogo from '../assets/img/wordpress.svg';
     opacity: 1;
   }
 
-  /* --- Styles Logos Technologies --- */
+  @keyframes scrollHorizontal {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .testimonials-grid:hover {
+    animation-play-state: paused;
+  }
+
   .tech-logos {
     width: 100%;
-    max-width: 800px; /* Limiter la largeur si besoin */
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    position: relative; /* Pour contexte z-index */
+    position: relative;
     z-index: 1;
   }
 
@@ -890,7 +977,7 @@ import wordpressLogo from '../assets/img/wordpress.svg';
   }
 
   .logo-scroll-wrapper {
-    overflow: hidden; /* Masquer le contenu qui dépasse */
+    overflow: hidden;
   }
 
   @keyframes scrollLogos {
@@ -901,22 +988,327 @@ import wordpressLogo from '../assets/img/wordpress.svg';
   .logo-list {
     display: flex;
     align-items: center;
-    gap: 3rem; /* Espace entre les logos */
+    gap: 3rem;
     padding: 0.5rem 0;
-    width: fit-content; /* S'adapte au contenu total (logos dupliqués) */
-    animation: scrollLogos 30s linear infinite; /* Ajuster durée pour vitesse */
+    width: fit-content;
+    will-change: transform;
   }
 
   .tech-logo {
-    height: 40px; /* Hauteur des logos */
-    width: auto; /* Largeur automatique */
-    opacity: 0.7; /* Légèrement transparents */
+    height: 40px;
+    width: auto;
+    opacity: 0.7;
     transition: opacity 0.3s ease;
-    flex-shrink: 0; /* Empêcher le rétrécissement */
+    flex-shrink: 0;
   }
 
   .tech-logos:hover .tech-logo {
-      opacity: 0.9; /* Augmenter l'opacité au survol de la zone */
+      opacity: 0.9;
+  }
+
+  /* --- Shared Section Styles --- */
+  section {
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+    /* overflow: hidden; /* Removed for now - potentially caused form issues */
+  }
+  section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3.5rem;
+    color: var(--sky-blue);
+    text-align: center;
+  }
+
+  /* --- Contact Section --- */
+  .contact-section {
+    padding: 5rem 2rem; /* Match other sections */
+    background: linear-gradient(to bottom, #1a2a38 0%, var(--near-black) 70%);
+    text-align: center;
+  }
+
+  /* Re-add h2 styling if needed, inherits from general section h2 now */
+  /* .contact-section h2 { ... } */
+
+  .contact-section p {
+    color: var(--off-white);
+    max-width: 60ch;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out 0.2s;
+    max-width: 700px; /* Ensure max-width */
+    margin: 0 auto; /* Center the form */
+    text-align: left; /* Align labels/inputs left within the centered form */
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--off-white);
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(135, 206, 235, 0.3);
+    background-color: rgba(30, 30, 30, 0.9); /* Darker background */
+    color: var(--off-white);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 8px rgba(135, 206, 235, 0.5);
+  }
+
+  .contact-section .cta-button {
+      display: block;
+      width: 100%;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      text-align: center; /* Center text within button */
+  }
+
+  .contact-section.is-visible .contact-form {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Tech Logos --- */
+  /* ... existing tech logos styles ... */
+
+  /* --- Shared Section Styles --- */
+  /* ... existing shared section styles ... */
+
+  /* --- Contact Form Enhancements --- */
+  .plan-options-section {
+    background-color: rgba(30, 60, 80, 0.2); /* Slightly different background */
+    border: 1px solid rgba(135, 206, 235, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem 2rem; /* More padding */
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .plan-options-section h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem; /* More space below title */
+    color: var(--sky-blue);
+    font-size: 1.3rem; /* Slightly larger */
+    font-weight: 600;
+  }
+  .plan-options-section h4 #selected-plan-display {
+    /* Keep bold */
+  }
+
+  .plan-options-section p {
+      margin-bottom: 1.2rem; /* More space below paragraph */
+      color: var(--off-white);
+      font-size: 0.9rem;
+      opacity: 0.9;
+  }
+
+  .options-checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; /* Slightly less gap */
+  }
+
+  .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0.8rem; /* Add padding to the row */
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+      cursor: pointer; /* Make whole row clickable */
+  }
+
+  .checkbox-option:hover {
+      background-color: rgba(135, 206, 235, 0.08); /* Hover background */
+  }
+
+  /* Hide default checkbox */
+  .checkbox-option input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      position: absolute; /* Remove from layout flow */
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  .checkbox-option label {
+      margin-bottom: 0; 
+      font-weight: normal; 
+      color: var(--off-white);
+      cursor: pointer;
+      flex-grow: 1;
+      position: relative; /* Needed for pseudo-element positioning */
+      padding-left: 2em; /* Space for custom checkbox */
+      line-height: 1.4; /* Ensure proper vertical alignment */
+  }
+
+  /* Custom checkbox style (the box) */
+  .checkbox-option label::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.2em;
+      height: 1.2em;
+      border: 2px solid rgba(135, 206, 235, 0.5);
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  /* Custom checkbox style (the checkmark) - shown when checked */
+  .checkbox-option input[type="checkbox"]:checked + label::after {
+      content: '';
+      position: absolute;
+      left: 0.4em;
+      top: 50%;
+      width: 0.4em;
+      height: 0.8em;
+      border: solid var(--sky-blue);
+      border-width: 0 3px 3px 0;
+      transform: translateY(-60%) rotate(45deg); /* Adjust position */
+  }
+
+  /* Style changes on check */
+  .checkbox-option input[type="checkbox"]:checked + label::before {
+      background-color: rgba(135, 206, 235, 0.2);
+      border-color: var(--sky-blue);
+  }
+
+  /* Focus style for accessibility */
+  .checkbox-option input[type="checkbox"]:focus + label::before {
+      outline: 2px solid var(--sky-blue);
+      outline-offset: 2px;
+  }
+
+  .options-divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(135, 206, 235, 0.2);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem; 
+  }
+
+  /* === Project Modal Styles === */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .modal-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-content {
+    background: linear-gradient(145deg, #1e2a3a 0%, #111827 100%);
+    padding: 2rem 2.5rem; /* More padding */
+    border-radius: 10px;
+    max-width: 900px; /* Adjust max width */
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(135, 206, 235, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+  .modal-overlay.is-visible .modal-content {
+      transform: scale(1);
+  }
+
+  .modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  .modal-close-button:hover {
+      color: var(--sky-blue);
+  }
+
+  .modal-content h3 {
+    color: var(--sky-blue);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Modal Swiper Styles */
+  .modal-swiper {
+    width: 100%;
+    height: 450px; /* Taller images */
+    margin-bottom: 2rem;
+    border-radius: 8px;
+  }
+  .modal-swiper .swiper-slide {
+    background-color: #111; /* Darker background for slides */
+  }
+  .modal-swiper .project-image { /* Reuse class if needed, ensure object-fit */
+     object-fit: contain; /* Use contain to see full image */
+  }
+  .modal-swiper-pagination .swiper-pagination-bullet-active {
+      background-color: var(--sky-blue);
+  }
+  .modal-swiper-button-prev, .modal-swiper-button-next {
+      color: var(--sky-blue);
+       /* Add background for better visibility? */
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+  }
+  .modal-swiper-button-prev::after, .modal-swiper-button-next::after {
+      font-size: 1rem;
+  }
+
+  .modal-content p {
+      color: var(--off-white);
+      line-height: 1.7;
+      font-size: 1rem;
   }
 
 </style>

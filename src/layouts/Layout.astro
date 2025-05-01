@@ -20,7 +20,17 @@ const { title } = Astro.props;
     {/* --- Google Fonts --- */} 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    {/* --- SwiperJS Carousel CSS (Keep this) --- */} 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    {/* --- REMOVE tsParticles CDN Scripts --- */}
+    {/* <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script> */}
+    {/* <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2/tsparticles.slim.min.js"></script> */}
 
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
@@ -33,19 +43,21 @@ const { title } = Astro.props;
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // Sélectionner les liens de navigation pointant vers une ancre
-        const navLinks = document.querySelectorAll('.site-header nav a[href^="#"]');
+        const navLinks = document.querySelectorAll<HTMLAnchorElement>('.site-header nav a[href^="#"]');
 
         if (navLinks.length > 0) {
           navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
               e.preventDefault(); // Empêcher le saut par défaut
 
               const targetId = this.getAttribute('href');
+              if (!targetId) return; // Exit if href is null
               const targetElement = document.querySelector(targetId);
 
               if (targetElement) {
                 // Calculer la position de la cible en tenant compte du header sticky
-                const headerOffset = document.querySelector('.site-header')?.offsetHeight || 0;
+                const header = document.querySelector('.site-header') as HTMLElement;
+                const headerOffset = header ? header.offsetHeight : 0;
                 // On peut ajouter un petit offset supplémentaire si besoin
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; // 20px de marge
