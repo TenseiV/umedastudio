@@ -11,48 +11,65 @@ import jsLogo from '../assets/img/js.svg';
 import wordpressLogo from '../assets/img/wordpress.svg';
 // import astroLogo from '../assets/img/astro.svg'; // Commenté car fichier manquant
 
-// --- Importer l'image du projet StopTCA --- 
 import stoptcaImage1 from '../assets/img/stoptca.webp';
 import stoptcaImage2 from '../assets/img/stoptca2.webp';
 import evenparcImage1 from '../assets/img/evenparc.webp';
 import evenparcImage2 from '../assets/img/evenparc2.webp';
 import maisonicImage1 from '../assets/img/maisonic.webp';
 import maisonicImage2 from '../assets/img/maisonic2.webp';
+import maisonicImage3 from '../assets/img/maisonic3.png';
 
 // Project Data (Remove typing)
 const projects = [
   {
+    id: 'upyourbizz',
+    title: 'UpYourbizz - Développements PHP Symfony sur ERP Interne',
+    description: 'Développements PHP Symfony sur un outil interne de type ERP pour le secteur automobile...',
+    detailedDescription: 'Développements PHP Symfony sur un outil interne de type ERP. Mise en place et maintenance d\'API REST. Développement de nouvelles fonctionnalités et documentation technique. Optimisation des performances et de la sécurité de l\'application.',
+    images: [/* Images à ajouter */], // Placeholder for images
+    tags: ['PHP', 'Symfony', 'API Rest', 'ERP', 'Automobile'],
+    details: 'Secteur Automobile | Décembre 2023 - Présent',
+    link: 'https://upyourbizz.com'
+  },
+  {
     id: 'stoptca',
-    title: 'StopTCA.fr - Refonte Paiement PHP',
+    title: 'StopTCA.fr - Plateforme médicale pour les TCA',
     description: 'Refonte complète du système de paiement pour une plateforme médicale...',
     detailedDescription: 'Migration de l\'ancien système de paiement vers une solution moderne utilisant Stripe via MangoPay. Développement d\'une API sécurisée en Laravel pour gérer les transactions, les abonnements et les remboursements. Création d\'un dashboard administrateur pour le suivi financier. Améliorations de l\'UX/UI du tunnel de paiement en Javascript et CSS.',
     images: [stoptcaImage1, stoptcaImage2], 
     tags: ['PHP', 'Laravel', 'MangoPay', 'JavaScript', 'CSS', 'HTML'],
     details: 'Secteur Médical | Juin 2022 - Mai 2023',
-    link: null 
+    link: 'https://stoptca.fr'
   },
   {
     id: 'evenparc',
-    title: 'EvenParc - Application Billetterie Symfony',
-    description: 'Développement d\'une application web de gestion et vente de billets...',
-    detailedDescription: 'Conception et développement d\'une plateforme complète en Symfony pour la gestion d\'événements et la vente de billets en ligne. Intégration d\'une API de paiement externe, gestion des places numérotées, système de codes promotionnels et interface d\'administration avancée pour les organisateurs. Optimisation des performances pour les pics de charge.',
+    title: 'EvenParc - Vente de véhicules d\'occasion',
+    description: 'Développement d\'une application web de gestion et vente de véhicules d\'occasion...',
+    detailedDescription: 'Développement d\'une application web de gestion et vente de véhicules d\'occasion. Intégration de fonctionnalités spécifiques via des plugins sur mesure (configurateur de produit, etc.). Optimisation SEO technique et de contenu pour améliorer le classement et les ventes.',
     images: [evenparcImage1, evenparcImage2],
     tags: ['PHP', 'Symfony', 'API Rest', 'JavaScript', 'Bootstrap'],
-    details: 'Secteur Événementiel | 2023',
-    link: null 
+    details: 'Secteur Automobile | 2020',
+    link: 'https://www.evenparcautomobiles.com/'
   },
   {
     id: 'maisonic',
-    title: 'Maisonic - Site E-commerce WordPress',
-    description: 'Création d\'un site e-commerce sur mesure avec WordPress et WooCommerce...',
-    detailedDescription: 'Refonte graphique et technique d\'un site WooCommerce existant. Développement d\'un thème WordPress personnalisé basé sur les maquettes fournies. Intégration de fonctionnalités spécifiques via des plugins sur mesure (configurateur de produit, etc.). Optimisation SEO technique et de contenu pour améliorer le classement et les ventes.',
-    images: [maisonicImage1, maisonicImage2],
-    tags: ['WordPress', 'WooCommerce', 'PHP', 'CSS', 'SEO'],
+    title: 'Maisonic - Site E-commerce Domotique',
+    description: 'Maintenance et développement d\'un site e-commerce sous Symfony et CMS Thélia',
+    detailedDescription: 'Maintenance et développement d\'un site e-commerce sous Symfony et CMS Thélia. Développement de nouvelles fonctionnalités et intégration de nouveaux modules. Optimisation SEO et performance du site.',
+    images: [maisonicImage1, maisonicImage2, maisonicImage3],
+    tags: ['PHP', 'Symfony', 'CMS Thélia', 'JavaScript', 'CSS', 'HTML'],
     details: 'Secteur Domotique | 2024',
-    link: null 
+    link: 'https://maisonic.com'
   },
   // Add more projects here...
 ];
+
+// Préparer les projets pour le transfert au JavaScript client
+const preparedProjects = projects.map(project => ({
+  ...project,
+  // Convertir les objets Image d'Astro en chemins d'URL pour le JavaScript
+  images: project.images.map(img => typeof img === 'string' ? img : img.src)
+}));
 
 // Remove type annotation
 const imageWidths = [400, 800];
@@ -60,15 +77,15 @@ const imageWidths = [400, 800];
 ---
 
 <Layout title="Umeda Studio - Développement Web sur mesure">
-	<main data-projects={JSON.stringify(projects)}>
+	<main data-projects={JSON.stringify(preparedProjects)}>
 		<section class="hero">
       <div id="particles-js"></div>
 			<div class="hero-content">
         <h1>Umeda Studio</h1>
-        <p class="tagline">Développements Web sur mesure.</p>
+        <p class="tagline">Développements Web sur mesure</p>
         <div class="hero-cta">
-          <a href="#services" class="cta-button">Services</a>
-          <a href="#tarifs" class="cta-button secondary">Tarifs</a>
+          <a href="#services" class="cta-button"><i class="fa-solid fa-code"></i> Services</a>
+          <a href="#offres" class="cta-button secondary"><i class="fa-solid fa-tags"></i> Offres</a>
         </div>
 
         {/* --- Section Logos Technologies --- */} 
@@ -154,7 +171,7 @@ const imageWidths = [400, 800];
                 ))}
               </div>
               {project.details && <p class="project-details">{project.details}</p>}
-              {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link cta-button secondary">Voir le projet</a>}
+              {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link cta-button secondary"><i class="fa-solid fa-eye"></i> Voir</a>}
             </div>
           </div>
         ))}
@@ -162,113 +179,61 @@ const imageWidths = [400, 800];
     </section>
 
     <section id="testimonials" class="testimonials-section">
-      <h2>Avis clients</h2>
+      <h2>Témoignages</h2>
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="quote">"Grâce à Umeda Studio, notre application métier est devenue incroyablement performante. Un travail PHP impeccable !"</p>
+          <div class="rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="quote">"Un nouveau projet avec Sébastien et comme d'habitude je suis complètement satisfait du résultat. À l'avenir je n'hésiterais pas à lui confier d'autres projets. Je vous le recommande très fortement."</p>
           <div class="author">
-            <div class="avatar-placeholder"></div>
             <div>
-              <p class="name">Jean Dupont</p>
-              <p class="title">Directeur Technique, Société Alpha</p>
+              <p class="name">Pierre Kossa</p>
+              <p class="title">Client fidèle, France</p>
             </div>
           </div>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"Le design du site vitrine est moderne et exactement ce que nous voulions. La partie e-commerce fonctionne parfaitement."</p>
+          <div class="rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="quote">"Excellent travail de Sébastien sur une application Intranet complexe."</p>
           <div class="author">
-            <div class="avatar-placeholder"></div>
             <div>
-              <p class="name">Marie Dubois</p>
-              <p class="title">Gérante, Boutique Beta</p>
+              <p class="name">Eric</p>
+              <p class="title">Albea Cosmetics & Fragrance</p>
             </div>
           </div>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"Réactif, créatif et très compétent techniquement. Umeda Studio a su comprendre et réaliser notre vision."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Paul Martin</p>
-              <p class="title">CEO, Startup Gamma</p>
-            </div>
+          <div class="rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
           </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Excellente communication et suivi de projet rigoureux. Le framework Symfony a été maîtrisé à la perfection."</p>
+          <p class="quote">"Cela fait un mois que je travaille avec Sébastien. Pour le moment je suis plus que satisfaite. Sebastien est une personne de confiance et très compétente. Pour lui un problème = une solution."</p>
           <div class="author">
-            <div class="avatar-placeholder"></div>
             <div>
-              <p class="name">Sophie Durand</p>
-              <p class="title">Chef de Projet, Groupe Delta</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Notre landing page est sublime et performante. Umeda Studio a un vrai sens artistique pour le front-end."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Lucas Petit</p>
-              <p class="title">Responsable Marketing, Epsilon</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Grâce à Umeda Studio, notre application métier est devenue incroyablement performante. Un travail PHP impeccable !"</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Jean Dupont</p>
-              <p class="title">Directeur Technique, Société Alpha</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Le design du site vitrine est moderne et exactement ce que nous voulions. La partie e-commerce fonctionne parfaitement."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Marie Dubois</p>
-              <p class="title">Gérante, Boutique Beta</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Réactif, créatif et très compétent techniquement. Umeda Studio a su comprendre et réaliser notre vision."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Paul Martin</p>
-              <p class="title">CEO, Startup Gamma</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Excellente communication et suivi de projet rigoureux. Le framework Symfony a été maîtrisé à la perfection."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Sophie Durand</p>
-              <p class="title">Chef de Projet, Groupe Delta</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="quote">"Notre landing page est sublime et performante. Umeda Studio a un vrai sens artistique pour le front-end."</p>
-          <div class="author">
-            <div class="avatar-placeholder"></div>
-            <div>
-              <p class="name">Lucas Petit</p>
-              <p class="title">Responsable Marketing, Epsilon</p>
+              <p class="name">Céline</p>
+              <p class="title">StopTCA.fr</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="tarifs" class="pricing-section">
-      <h2>Des Tarifs Adaptés à Vos Besoins</h2>
+    <section id="offres" class="pricing-section">
+      <h2>Des offres Adaptées à Vos Besoins</h2>
       <div class="pricing-grid">
         <div class="pricing-card">
           <h3>Basic</h3>
@@ -279,7 +244,7 @@ const imageWidths = [400, 800];
             <li>Formulaire de contact</li>
             <li>Mise en ligne</li>
           </ul>
-          <button type="button" class="cta-button" onclick="selectPlan('Basic')">Choisir Basic</button>
+          <button type="button" class="cta-button" onclick="selectPlan('Basic')"><i class="fa-solid fa-check"></i> Choisir</button>
         </div>
         <div class="pricing-card featured">
           <h3>Starter</h3>
@@ -291,7 +256,7 @@ const imageWidths = [400, 800];
             <li>Début fonctionnalités e-commerce</li>
             <li>Optimisation SEO initiale</li>
           </ul>
-          <button type="button" class="cta-button" onclick="selectPlan('Starter')">Choisir Starter</button>
+          <button type="button" class="cta-button" onclick="selectPlan('Starter')"><i class="fa-solid fa-check"></i> Choisir</button>
         </div>
         <div class="pricing-card">
           <h3>Pro</h3>
@@ -303,7 +268,7 @@ const imageWidths = [400, 800];
             <li>Fonctionnalités e-commerce avancées</li>
             <li>Support & Maintenance (option)</li>
           </ul>
-          <button type="button" class="cta-button" onclick="selectPlan('Pro')">Choisir Pro</button>
+          <button type="button" class="cta-button" onclick="selectPlan('Pro')"><i class="fa-solid fa-check"></i> Choisir</button>
         </div>
       </div>
     </section>
@@ -336,7 +301,7 @@ const imageWidths = [400, 800];
           <label for="message">Message :</label>
           <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre projet ou posez vos questions ici..."></textarea>
         </div>
-        <button type="submit" class="cta-button">Envoyer la Demande</button>
+        <button type="submit" class="cta-button"><i class="fa-solid fa-paper-plane"></i> Envoyer</button>
       </form>
     </section>
 
@@ -356,7 +321,36 @@ const imageWidths = [400, 800];
           <div class="swiper-button-next modal-swiper-button-next"></div>
         </div>
 
-        <p id="modal-project-description"></p>
+        <div class="modal-project-info">
+          <div class="modal-project-meta">
+            <div class="modal-project-type">
+              <span class="info-label">Type</span>
+              <span id="modal-project-type" class="info-value"></span>
+            </div>
+            <div class="modal-project-sector">
+              <span class="info-label">Secteur</span>
+              <span id="modal-project-sector" class="info-value"></span>
+            </div>
+            <div class="modal-project-date">
+              <span class="info-label">Période</span>
+              <span id="modal-project-date" class="info-value"></span>
+            </div>
+          </div>
+          
+          <div class="modal-project-details">
+            <h4>Description</h4>
+            <p id="modal-project-description"></p>
+          </div>
+          
+          <div class="modal-project-technologies">
+            <h4>Technologies utilisées</h4>
+            <div id="modal-project-tags" class="modal-tags"></div>
+          </div>
+          
+          <div id="modal-project-link-container" class="modal-project-link">
+            <a id="modal-project-link" href="#" target="_blank" rel="noopener noreferrer" class="cta-button"><i class="fa-solid fa-globe"></i> Voir le site</a>
+          </div>
+        </div>
       </div>
     </div>
     {/* === End Project Modal Structure === */} 
@@ -549,22 +543,86 @@ const imageWidths = [400, 800];
         const titleEl = document.getElementById('modal-project-title');
         const descriptionEl = document.getElementById('modal-project-description');
         const swiperWrapper = document.getElementById('modal-swiper-wrapper');
+        
+        // Nouveaux éléments
+        const typeEl = document.getElementById('modal-project-type');
+        const sectorEl = document.getElementById('modal-project-sector');
+        const dateEl = document.getElementById('modal-project-date');
+        const tagsEl = document.getElementById('modal-project-tags');
+        const linkEl = document.getElementById('modal-project-link');
+        const linkContainerEl = document.getElementById('modal-project-link-container');
 
         if (!project || !modal || !titleEl || !descriptionEl || !swiperWrapper) {
             console.error("Modal elements or project data not found for:", projectId);
             return;
         }
 
+        // Mise à jour du titre et de la description
         titleEl.textContent = project.title;
         descriptionEl.textContent = project.detailedDescription;
+        
+        // Extraction du type de projet depuis le titre (ex: "StopTCA.fr - Refonte Paiement PHP")
+        const titleParts = project.title.split(' - ');
+        if (titleParts.length > 1 && typeEl) {
+            typeEl.textContent = titleParts[1];
+        } else if (typeEl) {
+            typeEl.textContent = "Projet Web";
+        }
+        
+        // Extraction du secteur et de la période depuis les détails (ex: "Secteur Médical | Juin 2022 - Mai 2023")
+        if (project.details) {
+            const detailParts = project.details.split(' | ');
+            if (detailParts.length > 0 && sectorEl) {
+                sectorEl.textContent = detailParts[0].replace('Secteur ', '');
+            }
+            if (detailParts.length > 1 && dateEl) {
+                dateEl.textContent = detailParts[1];
+            }
+        }
+        
+        // Affichage des tags
+        if (tagsEl) {
+            tagsEl.innerHTML = '';
+            project.tags.forEach(tag => {
+                const tagEl = document.createElement('span');
+                tagEl.className = `tag ${tag.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+                tagEl.textContent = tag;
+                tagsEl.appendChild(tagEl);
+            });
+        }
+        
+        // Gestion du lien vers le site
+        if (linkContainerEl) {
+            if (project.link) {
+                linkContainerEl.style.display = 'block';
+                if (linkEl) {
+                    linkEl.href = project.link;
+                    linkEl.textContent = 'Voir le site';
+                }
+            } else {
+                linkContainerEl.style.display = 'none';
+            }
+        }
 
+        // Mise à jour des images dans le swiper
         swiperWrapper.innerHTML = '';
         project.images.forEach(imgData => {
             const slide = document.createElement('div');
             slide.classList.add('swiper-slide');
-            const imgSrc = imgData?.src;
+            const imgSrc = typeof imgData === 'string' ? imgData : imgData?.src;
             if (imgSrc) {
-                slide.innerHTML = `<img src="${imgSrc}" alt="${project.title}" class="project-image">`;
+                // Créer un conteneur pour centrer et dimensionner l'image correctement
+                slide.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 10px;">
+                        <img 
+                            src="${imgSrc}" 
+                            alt="${project.title}" 
+                            class="project-image"
+                            loading="lazy"
+                            style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto;"
+                        >
+                    </div>
+                `;
             } else {
                 slide.innerHTML = `<span>Image not available</span>`;
                 console.warn("Image source not found for modal:", imgData);
@@ -585,6 +643,11 @@ const imageWidths = [400, 800];
                 loop: project.images.length > 1,
                 slidesPerView: 1,
                 spaceBetween: 20,
+                centeredSlides: true,
+                watchOverflow: true,
+                observer: true,
+                observeParents: true,
+                updateOnImagesReady: true,
                 pagination: {
                     el: modal.querySelector('.modal-swiper-pagination'),
                     clickable: true,
@@ -596,10 +659,19 @@ const imageWidths = [400, 800];
                 keyboard: {
                     enabled: true,
                 },
+                on: {
+                    init: function() {
+                        console.log('Swiper initialized successfully');
+                        // Force update after a short delay to ensure images are loaded
+                        setTimeout(() => {
+                            this.update();
+                        }, 100);
+                    }
+                }
             });
         }
     }
-
+    
     // --- Function to close the project modal ---
     function closeProjectModal(event) {
         const modal = document.getElementById('project-modal');
@@ -607,11 +679,19 @@ const imageWidths = [400, 800];
             return;
         }
         if (modal) {
-            modal.classList.remove('is-visible');
-            if (modalSwiperInstance) {
-                modalSwiperInstance.destroy(true, true);
-                modalSwiperInstance = null;
-            }
+            // Ajouter une classe pour l'animation de fermeture
+            modal.classList.add('is-closing');
+            
+            // Attendre que l'animation soit terminée avant de masquer la modale
+            setTimeout(() => {
+                modal.classList.remove('is-visible');
+                modal.classList.remove('is-closing');
+                
+                if (modalSwiperInstance) {
+                    modalSwiperInstance.destroy(true, true);
+                    modalSwiperInstance = null;
+                }
+            }, 300); // Correspond à la durée de transition CSS
         }
     }
 
@@ -628,7 +708,12 @@ const imageWidths = [400, 800];
     // Add event listener for modal overlay click
     const overlay = document.getElementById('project-modal');
     if (overlay) {
-        overlay.addEventListener('click', (e) => closeProjectModal(e));
+        overlay.addEventListener('click', (e) => {
+            // N'appelle closeProjectModal que si le clic est sur l'overlay lui-même
+            if (e.target === overlay) {
+                closeProjectModal(e);
+            }
+        });
     }
   }
 
@@ -763,35 +848,136 @@ const imageWidths = [400, 800];
     margin-bottom: 4rem;
   }
 
+  /* Responsive styles for hero section */
+  @media (max-width: 767px) {
+    .hero {
+      min-height: 80vh;
+      padding: 3rem 1rem;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tagline {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-cta .cta-button {
+      width: 100%;
+    }
+    
+    .tech-logos {
+      max-width: 100%;
+    }
+    
+    .tech-logo {
+      height: 28px;
+    }
+  }
+  
+  /* Tablet styles */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    h1 {
+      font-size: 3.5rem;
+    }
+    
+    .tagline {
+      font-size: 1.3rem;
+      max-width: 50ch;
+    }
+  }
+
   .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     background-color: var(--sky-blue);
     color: var(--near-black);
-    padding: 0.8rem 1.8rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
   }
 
   .cta-button:hover {
     background-color: #6fbedf;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(135, 206, 235, 0.4);
     text-decoration: none;
+  }
+  
+  .cta-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(135, 206, 235, 0.2);
+  }
+  
+  /* Effet d'ondulation au clic */
+  .cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+  }
+  
+  .cta-button:focus:not(:active)::after {
+    animation: ripple 0.8s ease-out;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    20% {
+      transform: scale(25, 25);
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(40, 40);
+    }
   }
 
   .cta-button.secondary {
     background-color: transparent;
     color: var(--sky-blue);
     border: 1px solid var(--sky-blue);
+    box-shadow: 0 4px 15px rgba(135, 206, 235, 0.1);
   }
 
   .cta-button.secondary:hover {
     background-color: rgba(135, 206, 235, 0.1);
     color: var(--sky-blue);
-    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(135, 206, 235, 0.2);
+  }
+  
+  .cta-button.secondary:active {
+    box-shadow: 0 2px 10px rgba(135, 206, 235, 0.1);
   }
 
   .services-section {
@@ -957,6 +1143,96 @@ const imageWidths = [400, 800];
   .pricing-section.is-visible .pricing-card:nth-child(1) { transition-delay: 0.1s; }
   .pricing-section.is-visible .pricing-card:nth-child(2) { transition-delay: 0.2s; }
   .pricing-section.is-visible .pricing-card:nth-child(3) { transition-delay: 0.3s; }
+  
+  /* Responsive styles for pricing section */
+  @media (max-width: 767px) {
+    .pricing-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .pricing-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      gap: 2rem;
+    }
+    
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .pricing-card.featured {
+      transform: scale(1);
+      order: -1; /* Move featured card to the top on mobile */
+    }
+    
+    .pricing-card:hover,
+    .pricing-card.featured:hover {
+      transform: translateY(-5px);
+    }
+    
+    .pricing-section.is-visible .pricing-card.featured {
+      transform: translateY(0);
+      border-width: 2px;
+    }
+    
+    .pricing-card h3 {
+      font-size: 1.6rem;
+    }
+    
+    .pricing-card .price {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    .pricing-card ul {
+      margin-bottom: 1.5rem;
+    }
+    
+    .pricing-card ul li {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .pricing-section {
+      padding: 3.5rem 2rem;
+    }
+    
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .pricing-card h3 {
+      font-size: 1.6rem;
+    }
+    
+    .pricing-card .price {
+      font-size: 2.2rem;
+    }
+    
+    .pricing-card.featured {
+      transform: scale(1.03);
+    }
+    
+    .pricing-card.featured:hover {
+      transform: scale(1.03) translateY(-5px);
+    }
+    
+    .pricing-section.is-visible .pricing-card.featured {
+      transform: scale(1.03);
+    }
+  }
 
   .portfolio-section {
     padding: 4rem 2rem;
@@ -970,14 +1246,112 @@ const imageWidths = [400, 800];
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--sky-blue);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .portfolio-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--sky-blue);
+    border-radius: 3px;
   }
 
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
+  }
+  
+  /* Enhanced responsive styles for portfolio grid */
+  @media (max-width: 767px) {
+    .portfolio-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .portfolio-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .portfolio-section h2::after {
+      width: 40px;
+      height: 2px;
+      bottom: -8px;
+    }
+    
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      max-width: 450px;
+      gap: 2rem;
+    }
+    
+    .swiper {
+      height: 180px;
+    }
+    
+    .project-content {
+      padding: 1.2rem;
+      min-height: 180px;
+    }
+    
+    .project-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .project-description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      -webkit-line-clamp: 2;
+    }
+    
+    .project-tags {
+      margin-bottom: 0.75rem;
+    }
+    
+    .tag {
+      padding: 0.25rem 0.6rem;
+      font-size: 0.7rem;
+    }
+    
+    .project-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .portfolio-section {
+      padding: 3.5rem 2rem;
+    }
+    
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+    
+    .portfolio-section h2 {
+      font-size: 2.2rem;
+    }
+    
+    .swiper {
+      height: 200px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1400px;
+    }
   }
 
   .project-card {
@@ -993,6 +1367,8 @@ const imageWidths = [400, 800];
     backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    height: 100%;
   }
 
   .portfolio-section.is-visible .project-card {
@@ -1010,22 +1386,29 @@ const imageWidths = [400, 800];
     width: 100%;
     height: 220px;
     border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid rgba(135, 206, 235, 0.15);
+    background-color: transparent;
+    overflow: hidden;
   }
 
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .project-image {
+  .swiper-slide img, 
+  .swiper-slide .project-image,
+  img.project-image {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0;
+    overflow: visible;
+  }
+  
+  .modal-swiper img,
+  .modal-swiper .project-image {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0;
   }
 
   .swiper-pagination-bullet {
@@ -1044,11 +1427,12 @@ const imageWidths = [400, 800];
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   .swiper-button-next:hover, 
   .swiper-button-prev:hover {
       background-color: rgba(0, 0, 0, 0.6);
+      transform: scale(1.1);
   }
 
   .swiper-button-next::after, 
@@ -1062,12 +1446,20 @@ const imageWidths = [400, 800];
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    position: relative;
+    height: auto;
+    min-height: 200px;
   }
 
   .project-content h3 {
     color: var(--sky-blue);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin: 0 0 0.75rem 0;
+    /* Ajouter une animation de soulignement hover */
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+    line-height: 1.3;
   }
 
   .project-description {
@@ -1076,6 +1468,11 @@ const imageWidths = [400, 800];
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .project-tags {
@@ -1097,6 +1494,16 @@ const imageWidths = [400, 800];
     background-color: var(--tag-default-bg);
     color: var(--tag-default-text);
     white-space: nowrap;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .project-card:hover .tag {
+    opacity: 0.9;
+  }
+  
+  .project-card:hover .tag:hover {
+    transform: translateY(-2px) scale(1.05);
+    opacity: 1;
   }
 
   .tag.php { background-color: var(--tag-php); }
@@ -1118,6 +1525,19 @@ const imageWidths = [400, 800];
     opacity: 0.7;
     margin-top: auto;
     margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .project-details::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--sky-blue);
+    opacity: 0.5;
+    border-radius: 50%;
   }
 
   .project-link {
@@ -1128,74 +1548,105 @@ const imageWidths = [400, 800];
   }
 
   .testimonials-section {
-    padding: 4rem 0;
-    background-color: var(--near-black);
-    text-align: center;
+    padding: 5rem 0;
     position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .testimonials-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--sky-blue);
-    padding: 0 2rem;
+    overflow: visible;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .testimonials-grid {
     display: flex;
     gap: 2rem;
-    width: fit-content;
-    padding: 1rem 0 2rem 2rem;
-    animation: scrollHorizontal 30s linear infinite;
+    padding: 1rem 1rem 2rem 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .testimonial-card {
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-    background: linear-gradient(135deg, #1a3a4a 0%, var(--near-black) 100%);
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(30, 50, 70, 0.8) 0%, rgba(20, 30, 40, 0.9) 100%);
     border-radius: 12px;
-    border: 1px solid rgba(135, 206, 235, 0.1);
-    text-align: left;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-width: 160px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(135, 206, 235, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    max-width: 350px; /* Légèrement réduit pour éviter le débordement */
+    width: 350px;
+    height: 260px;
     flex-shrink: 0;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+    scroll-snap-align: center;
+    box-sizing: border-box;
   }
 
   .testimonial-card .quote {
     color: var(--off-white);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    font-size: 1rem; /* Légèrement plus petit pour plus de contenu */
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
     font-style: italic;
     flex-grow: 1;
+    overflow-y: auto; /* Permet le défilement si le contenu est trop long */
+    scrollbar-width: thin; /* Pour Firefox */
+    scrollbar-color: rgba(135, 206, 235, 0.3) transparent; /* Pour Firefox */
+  }
+  
+  /* Style de scrollbar pour Chrome/Safari/Edge */
+  .testimonial-card .quote::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .testimonial-card .quote::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .testimonial-card .quote::-webkit-scrollbar-thumb {
+    background-color: rgba(135, 206, 235, 0.3);
+    border-radius: 4px;
   }
 
   .testimonial-card .author {
     display: flex;
-    align-items: center;
-    gap: 1rem;
     margin-top: auto;
+    justify-content: center;
+    text-align: center;
   }
 
-  .testimonial-card .avatar-placeholder {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(135, 206, 235, 0.2);
-    border-radius: 50%;
-    flex-shrink: 0;
+  .testimonial-card .author div {
+    text-align: center;
+  }
+
+  /* Système d'étoiles */
+  .testimonial-card .rating {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+
+  .testimonial-card .star {
+    color: #FFD700; /* Couleur dorée pour les étoiles */
+    font-size: 1.25rem;
   }
 
   .testimonial-card .name {
     color: var(--sky-blue);
     font-weight: 600;
     margin: 0 0 0.2rem 0;
+    text-align: center;
   }
 
   .testimonial-card .title {
@@ -1203,6 +1654,14 @@ const imageWidths = [400, 800];
     font-size: 0.9rem;
     opacity: 0.8;
     margin: 0;
+    text-align: center;
+  }
+  
+  .testimonial-card .date {
+    color: var(--off-white);
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0.2rem 0 0 0;
   }
 
   .testimonials-section.is-visible .testimonial-card {
@@ -1220,6 +1679,72 @@ const imageWidths = [400, 800];
 
   .testimonials-grid:hover {
     animation-play-state: paused;
+  }
+  
+  /* Responsive styles for testimonials section */
+  @media (max-width: 767px) {
+    .testimonials-section {
+      padding: 3rem 0 3rem 0;
+    }
+    
+    .testimonials-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      padding: 0 1.5rem;
+    }
+    
+    .testimonials-grid {
+      gap: 1.5rem;
+      padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .testimonial-card {
+      padding: 1.5rem;
+      min-width: 300px;
+      max-width: 90vw;
+      width: auto;
+      height: auto;
+    }
+    
+    .testimonial-card .quote {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-card .name {
+      font-size: 0.95rem;
+    }
+    
+    .testimonial-card .title {
+      font-size: 0.8rem;
+    }
+
+    .testimonial-card .rating {
+      margin-bottom: 0.75rem;
+    }
+
+    .testimonial-card .star {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .testimonials-section h2 {
+      font-size: 2.2rem;
+    }
+    
+    .testimonial-card {
+      min-width: 320px;
+      max-width: 320px;
+      width: 320px;
+      height: 230px;
+      padding: 1.8rem;
+    }
+    
+    .testimonial-card .quote {
+      font-size: 1rem;
+    }
   }
 
   .tech-logos {
@@ -1483,7 +2008,7 @@ const imageWidths = [400, 800];
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1503,20 +2028,123 @@ const imageWidths = [400, 800];
 
   .modal-content {
     background: linear-gradient(145deg, #1e2a3a 0%, #111827 100%);
-    padding: 2rem 2.5rem; /* More padding */
+    padding: 2rem 2.5rem;
     border-radius: 10px;
-    max-width: 900px; /* Adjust max width */
+    max-width: 900px;
     width: 90%;
     max-height: 90vh;
-    overflow-y: auto; /* Allow scrolling if content overflows */
+    overflow-y: auto;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(135, 206, 235, 0.2);
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
+    transform: scale(0.95) translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0;
   }
+  
   .modal-overlay.is-visible .modal-content {
-      transform: scale(1);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+  }
+  
+  /* Animation de fermeture de la modale */
+  .modal-overlay.is-closing .modal-content {
+    transform: scale(0.95) translateY(30px);
+    opacity: 0;
+  }
+  
+  /* Enhanced modal responsive styles */
+  @media (max-width: 767px) {
+    .modal-content {
+      padding: 1.25rem 1rem 1.5rem;
+      width: 95%;
+      max-height: 95vh;
+    }
+    
+    .modal-close-button {
+      top: 0.75rem;
+      right: 1rem;
+      font-size: 2rem;
+    }
+    
+    .modal-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-right: 30px; /* Space for close button */
+    }
+    
+    .modal-swiper {
+      height: 220px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .modal-project-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .modal-project-meta {
+      order: 3;
+      padding: 1rem;
+    }
+    
+    .modal-project-details {
+      order: 1;
+    }
+    
+    .modal-project-technologies {
+      order: 2;
+    }
+    
+    .modal-project-link {
+      order: 4;
+      margin-top: 0.5rem;
+    }
+    
+    .modal-project-details h4,
+    .modal-project-technologies h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .modal-project-details p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .info-label {
+      font-size: 0.75rem;
+    }
+    
+    .info-value {
+      font-size: 0.9rem;
+    }
+    
+    .modal-tags .tag {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .modal-content {
+      padding: 2rem;
+      max-width: 700px;
+    }
+    
+    .modal-swiper {
+      height: 350px;
+    }
+    
+    .modal-content h3 {
+      font-size: 1.8rem;
+    }
+    
+    .modal-project-details p {
+      font-size: 0.95rem;
+    }
   }
 
   .modal-close-button {
@@ -1531,6 +2159,7 @@ const imageWidths = [400, 800];
     padding: 0;
     line-height: 1;
     transition: color 0.2s ease;
+    z-index: 10;
   }
   .modal-close-button:hover {
       color: var(--sky-blue);
@@ -1546,33 +2175,378 @@ const imageWidths = [400, 800];
   /* Modal Swiper Styles */
   .modal-swiper {
     width: 100%;
-    height: 450px; /* Taller images */
+    height: 450px;
     margin-bottom: 2rem;
     border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(135, 206, 235, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
+    background-color: transparent;
   }
+  
   .modal-swiper .swiper-slide {
-    background-color: #111; /* Darker background for slides */
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
-  .modal-swiper .project-image { /* Reuse class if needed, ensure object-fit */
-     object-fit: contain; /* Use contain to see full image */
+  
+  .modal-swiper .project-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    margin: 0;
   }
+  
   .modal-swiper-pagination .swiper-pagination-bullet-active {
       background-color: var(--sky-blue);
   }
+  
   .modal-swiper-button-prev, .modal-swiper-button-next {
       color: var(--sky-blue);
-       /* Add background for better visibility? */
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
+      transition: all 0.2s ease;
   }
+  
+  .modal-swiper-button-prev:hover, .modal-swiper-button-next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+  }
+  
   .modal-swiper-button-prev::after, .modal-swiper-button-next::after {
       font-size: 1rem;
   }
-
-  .modal-content p {
-      color: var(--off-white);
-      line-height: 1.7;
-      font-size: 1rem;
+  
+  @media (max-width: 767px) {
+    .modal-swiper {
+      height: 300px;
+    }
   }
 
-</style>
+  .modal-project-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .modal-project-info {
+      grid-template-columns: 3fr 1fr;
+      gap: 3rem;
+    }
+    
+    .modal-project-meta {
+      grid-column: 2;
+      grid-row: 1 / 3;
+    }
+    
+    .modal-project-details {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    
+    .modal-project-technologies {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    
+    .modal-project-link {
+      grid-column: 1 / 3;
+      grid-row: 3;
+    }
+  }
+
+  .modal-project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgba(135, 206, 235, 0.07);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid rgba(135, 206, 235, 0.15);
+  }
+
+  .modal-project-type,
+  .modal-project-sector,
+  .modal-project-date {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--sky-blue);
+    opacity: 0.8;
+  }
+
+  .info-value {
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+  }
+
+  .modal-project-details h4,
+  .modal-project-technologies h4 {
+    color: var(--sky-blue);
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .modal-project-details p {
+    color: var(--off-white);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .modal-project-link {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .modal-project-link .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-width: 160px;
+  }
+
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .modal-tags .tag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* Sélecteur spécifique pour les images de projet */
+  img[class="project-image"],
+  img.project-image {
+    display: block !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  /* Style global pour les conteneurs d'images dans Swiper */
+  .swiper, 
+  .modal-swiper,
+  .swiper-slide {
+    overflow: hidden;
+    background-color: transparent;
+  }
+
+  /* Style pour les diapositives Swiper */
+  .swiper-slide img, 
+  .swiper-slide .project-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    margin: 0;
+  }
+
+  /* Responsive styles for services section */
+  @media (max-width: 767px) {
+    .services-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .services-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .service-card {
+      padding: 1.5rem;
+    }
+    
+    .service-card h3 {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .services-section {
+      padding: 3.5rem 2rem;
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .services-section h2 {
+      font-size: 2.2rem;
+    }
+  }
+
+  /* --- Contact Section --- */
+  .contact-section {
+    padding: 5rem 2rem; /* Match other sections */
+    background: linear-gradient(to bottom, #1a2a38 0%, var(--near-black) 70%);
+    text-align: center;
+  }
+
+  /* Re-add h2 styling if needed, inherits from general section h2 now */
+  /* .contact-section h2 { ... } */
+
+  .contact-section p {
+    color: var(--off-white);
+    max-width: 60ch;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out 0.2s;
+    max-width: 700px; /* Ensure max-width */
+    margin: 0 auto; /* Center the form */
+    text-align: left; /* Align labels/inputs left within the centered form */
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--off-white);
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(135, 206, 235, 0.3);
+    background-color: rgba(30, 30, 30, 0.9); /* Darker background */
+    color: var(--off-white);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 8px rgba(135, 206, 235, 0.5);
+  }
+
+  .contact-section .cta-button {
+      display: block;
+      width: 100%;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      text-align: center; /* Center text within button */
+  }
+
+  .contact-section.is-visible .contact-form {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive styles for contact section */
+  @media (max-width: 767px) {
+    .contact-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-section p {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    
+    .form-group label {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      padding: 0.7rem 0.9rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-section .cta-button {
+      font-size: 1rem;
+      padding: 0.8rem 1.5rem;
+    }
+    
+    .plan-options-section {
+      padding: 1.2rem 1.5rem;
+    }
+    
+    .plan-options-section h4 {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .contact-section {
+      padding: 4rem 2rem;
+    }
+    
+    .contact-section h2 {
+      font-size: 2.2rem;
+    }
+    
+    .contact-form {
+      max-width: 600px;
+    }
+  }
+
+  /* Style pour l'élément .quote */
+  .testimonial-card .quote {
+    color: var(--off-white);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(135, 206, 235, 0.3) transparent;
+    text-align: center;
+  }
+
+  </style>
+
+</rewritten_file>

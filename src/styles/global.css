@@ -2,6 +2,24 @@
   --sky-blue: #87CEEB; /* Bleu ciel */
   --off-white: #f0f0f0; /* Blanc cassé pour le texte */
   --near-black: #121212; /* Noir légèrement désaturé */
+  
+  /* Tags color variables */
+  --tag-default-bg: rgba(135, 206, 235, 0.2);
+  --tag-default-text: #ffffff;
+  --tag-php: #777bb3;
+  --tag-laravel: #ff2d20;
+  --tag-symfony: #000000;
+  --tag-symfony-text: #ffffff;
+  --tag-javascript: #f7df1e;
+  --tag-javascript-text: #000000;
+  --tag-css: #264de4;
+  --tag-html: #e34c26;
+  --tag-wordpress: #21759b;
+  --tag-woocommerce: #96588a;
+  --tag-apirest: #009688;
+  --tag-seo: #4285f4;
+  --tag-bootstrap: #563d7c;
+  --tag-mangopay: #00a0df;
 }
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
@@ -12,6 +30,7 @@
 html {
   min-height: 100%; /* Assurer que html prend toute la hauteur */
   /* scroll-behavior: smooth; */ /* Supprimer cette ligne */
+  font-size: 16px; /* Base font size */
 }
 
 body {
@@ -44,4 +63,50 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* Global responsive styles */
+@media (max-width: 767px) {
+  html {
+    font-size: 14px; /* Slightly smaller base font size on mobile */
+  }
+  
+  h2 {
+    font-size: 2rem !important; /* Consistent h2 size across all sections */
+  }
+  
+  h3 {
+    font-size: 1.4rem !important; /* Consistent h3 size */
+  }
+  
+  /* Add smooth momentum scrolling for touch devices */
+  body, .modal-content {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Improve touch targets */
+  button, 
+  .cta-button, 
+  a.cta-button, 
+  a.cta-button-header,
+  input[type="submit"] {
+    min-height: 44px; /* Apple's recommended minimum touch target size */
+  }
+}
+
+/* Tablet responsive styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 15px;
+  }
+  
+  h2 {
+    font-size: 2.2rem !important;
+  }
+}
+
+/* Ensure images never break layout */
+img {
+  max-width: 100%;
+  height: auto;
 } 
