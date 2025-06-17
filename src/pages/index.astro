@@ -18,15 +18,39 @@ import evenparcImage2 from '../assets/img/evenparc2.webp';
 import maisonicImage1 from '../assets/img/maisonic.webp';
 import maisonicImage2 from '../assets/img/maisonic2.webp';
 import maisonicImage3 from '../assets/img/maisonic3.png';
+import albeaImage1 from '../assets/img/albea.png';
+import upgradeImage1 from '../assets/img/upgrade1.png';
+import upgradeImage2 from '../assets/img/upgrade2.png';
+import projectPlaceholder from '../assets/img/project-placeholder.svg';
 
 // Project Data (Remove typing)
 const projects = [
+  {
+    id: 'upgradegg',
+    title: 'Upgrade.gg - Plateforme Gaming & E-sport',
+    description: 'Plateforme de mise en relation coach/élèves dans le domaine du gaming et de l\'esport...',
+    detailedDescription: 'Développement d\'une plateforme complète de mise en relation entre coachs et élèves dans le domaine du gaming et de l\'esport. Système de réservation de sessions de coaching, gestion des profils utilisateurs, système de paiement intégré et tableau de bord pour les coachs et étudiants.',
+    images: [upgradeImage1, upgradeImage2],
+    tags: ['PHP', 'Laravel', 'JavaScript', 'MySQL', 'Gaming', 'E-sport'],
+    details: 'Secteur Gaming/E-sport | En développement',
+    link: ''
+  },
+  {
+    id: 'albea',
+    title: 'Albea Cosmetics & Fragrance - Développements PHP Laravel',
+    description: 'Maintenance sur un outil existant de gestions d\'équipes et de machines en PHP - Bootstrap 4...',
+    detailedDescription: 'Maintenance sur un outil existant de gestions d\'équipes et de machines en PHP - Bootstrap 4. Conception et développement d\'une nouvelle application en PHP Laravel pour un meilleur suivis des consignes d\'équipe sur les machines et les moules de la journée.',
+    images: [albeaImage1],
+    tags: ['PHP', 'Laravel 11', 'PHP8', 'MySQL', 'Bootstrap'],
+    details: 'Secteur Chimie | Décembre 2023 - Aujourd\'hui',
+    link: ''
+  },
   {
     id: 'upyourbizz',
     title: 'UpYourbizz - Développements PHP Symfony sur ERP Interne',
     description: 'Développements PHP Symfony sur un outil interne de type ERP pour le secteur automobile...',
     detailedDescription: 'Développements PHP Symfony sur un outil interne de type ERP. Mise en place et maintenance d\'API REST. Développement de nouvelles fonctionnalités et documentation technique. Optimisation des performances et de la sécurité de l\'application.',
-    images: [/* Images à ajouter */], // Placeholder for images
+    images: [projectPlaceholder],
     tags: ['PHP', 'Symfony', 'API Rest', 'ERP', 'Automobile'],
     details: 'Secteur Automobile | Décembre 2023 - Présent',
     link: 'https://upyourbizz.com'
